@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Избранное</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. Список избранного">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/index.css">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <link rel="stylesheet" href="/src/css/favorite.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/favorite.js" ></script>
+    <script src="/src/js/blazy.js" ></script>
+    <script src="/src/js/blazy.min.js" ></script>
+</head>
+<body>
+    <#include "/src/html/hat.html">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <div class="row mb-5">
+                    <h1>Избранное</h1>
+                </div>
+                <div class="row">
+                    <#if (PageData.getProducts()??) && (PageData.getProducts()?size gt 0)>
+                        <#list PageData.getProducts() as product >
+                        <div class="card card-favorite mb-3" >
+                            <div class="row no-gutters">
+                                <div class="col-5 col-card-image">
+                                    <a href="/product?id=${product.getId()}"><img src="/src/images/products/${product.getName()}.jpg" class="card-img-top py-3 pr-4 pl-4 b-lazy" height="200rem" alt="${product.getName()}"></a>
+                                </div>
+                                <div class="col-7">
+                                    <div class="card-body text-left">
+                                        <p class="card-text">${product.getName()}</p>
+
+                                    </div>
+                                </div>
+                                <div class="col text-right">
+                                    <div class="card-footer bg-transparent text-right">
+                                        <#if product.getAmount() gt 0>
+                                            <#if product.isDiscount()>
+                                            <h3 class="pull-left text-muted old-price">${product.getPrice()} &#8381;</h3>
+                                            <h4 class="pull-left card-title"><b>${product.getPrice_with_discount()} &#8381;</b></h4>
+                                            <#else>
+                                            <h4 class="pull-left card-title"><b>${product.getPrice()} &#8381;</b></h4>
+                                            </#if>
+                                            <#function isInBasket productObj>
+                                                <#if PageData.getBaskets()?? >
+                                                    <#list PageData.getBaskets() as basket>
+                                                        <#if  basket.getId_product() == productObj.getId()>
+                                                            <#return true>
+                                                        </#if>
+                                                    </#list>
+                                                    <#return false>
+                                                </#if>
+                                                <#return false>
+                                            </#function>
+                                            <#if isInBasket(product) >
+                                                <button class="btn btn-primary pull-right in-basket" type="button" onclick="addToBasket('${product.getId()}')"><i class="fas fa-check check-draw-black"></i></button>
+                                            <#else>
+                                                <button class="btn btn-primary pull-right" type="button" onclick="addToBasket('${product.getId()}')"><i class="fas fa-shopping-basket"></i></button>
+                                            </#if>
+                                        <#else>
+                                            <h5 class="pull-left"><b>Товар временно недоступен для покупки</b></h5>
+                                        </#if>
+
+                                    </div>
+                                    <div class="row text-right">
+                                        <div class="col text-right">
+                                            <button class="btn" type="button" onclick="delete_favorite('${product.getId()}')"><i class="fas fa-dumpster mr-2"></i>Удалить</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </#list>
+                    <#else>
+                        <div class="row">
+                            <h4>Ваш список избранного пуст</h4>
+                        </div>
+                        <div class="row">
+                            <a href="/" class="btn btn-primary pull-right" role="button" aria-disabled="true">Вернуться на главную</a>
+                        </div>
+                    </#if>
+                </div>
+                <br>
+            </div>
+        </div>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>

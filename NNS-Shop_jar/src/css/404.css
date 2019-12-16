@@ -1,0 +1,28 @@
+.main_title{
+    background: #dc385d;
+    text-align: center;
+    transition: 1s ease;
+    border: brown solid 2px;
+    border-radius: 1em;
+    padding: 1em;
+}
+.main_title:hover{
+    transform: translate(0em, .8em) scale(1.2, 1.2);
+}
+.other_text{
+    background: #dc879e;
+    text-align: center;
+    transition: 1s ease;
+    border: #a56782 solid 2px;
+    border-radius: .2em;
+    padding: 1em;
+}
+.main_page{
+    transition: 1s ease;
+}
+.main_page:hover{
+    transform: scale(2, 2);
+}
+body{
+    background: white;
+}

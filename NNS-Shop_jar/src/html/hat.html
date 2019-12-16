@@ -1,0 +1,61 @@
+<nav class="navbar navbar-light bg-light py-2"><br></nav>
+
+<header class="py-3 bg-light hat-user">
+    <div class="row justify-content-between align-items-center hat-user ">
+        <div class="col-4 col-sm-4 col-md-4 col-lg-4 pt-1 text-center">
+            <#if PageData.getClient()??>
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" id="dropdown_menu_button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        ${PageData.getClient().getSurname()} ${PageData.getClient().getName()} <#if PageData.getClient().getPatronymic()??> ${PageData.getClient().getPatronymic()} </#if>
+                    </button>
+                    <div class="dropdown-menu" role="menu" aria-labelledby="dropdownMenuButton">
+                        <a class="dropdown-item" href="/my-account">Личный кабинет</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/order-history">История заказов</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="/exit">Выход</a>
+                    </div>
+                </div>
+            <#else>
+                <button class="btn" ><a href="login">Вход или регистрация </a></button>
+            </#if>
+        </div>
+        <div class="col-3 col-sm-3 col-md-3 col-lg-3 col-main-image p-0 text-center">
+            <img class="main-image" src="/src/images/nns_shop_image.jpg" id="main_image" role="button" alt="NNS-SHOP" width="140" height="90">
+        </div>
+        <div class="col-1 col-sm-2 col-md-2 col-lg-2 col-search p-0 text-right pull-right">
+            <div class="search input-group">
+                <input class="form-control" type="search" placeholder="Поиск" aria-label="Search">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary fas fa-search" type="submit"></button>
+                </div>
+            </div>
+        </div>
+        <div class="col-1 col-sm-1 col-md-2 col-lg-2 col-favorite-basket text-right flex-div">
+                <a href="/favorite" id="favorite_button" class="btn btn-info favorite-basket d-none d-md-block mr-2" role="button">
+                    <i class="far fa-heart"></i>
+                    <#if PageData.getAmount_of_favorite() gt 0>
+                        <span class="badge badge-light ">${PageData.getAmount_of_favorite()}</span>
+                    </#if>
+                </a>
+                <a href="/basket" role="button" id="basket_button" class="btn btn-info btn-md favorite-basket ">
+                    <i class="fas fa-shopping-basket"></i>
+                    <#if PageData.getAmount_of_basket() gt 0>
+                        <span class="badge badge-light" >${PageData.getAmount_of_basket()}</span>
+                    </#if>
+                </a>
+        </div>
+    </div>
+</header>
+
+<div class="nav-scroller  mb-2">
+    <nav class="nav justify-content-between shadow p-3 mb-5 bg-white rounded">
+        <#list PageData.getCategories() as category>
+            <div class="mb-1">
+                <div class="form-group ">
+                    <button type="button" class="btn btn-md btn-block  p-1"><a class="button_a" href="/category?id=${category.getId()}"> ${category.getName()} </a></button>
+                </div>
+            </div>
+        </#list>
+    </nav>
+</div>

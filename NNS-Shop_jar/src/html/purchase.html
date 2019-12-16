@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Оформление заказа</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. Оформление заказа.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <link rel="stylesheet" href="/src/css/purchase.css">
+    <link rel="stylesheet" href="/src/css//dist/checkbox.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/purchase.js" ></script>
+    <script src="/src/js/jquery.mask.js"></script>
+    <script src="/src/js/jquery.mask.min.js"></script>
+    <script src="/src/js/bootbox/bootbox.all.js"></script>
+    <script src="/src/js/bootbox/bootbox.js"></script>
+    <script src="/src/js/bootbox/bootbox.locales.js"></script>
+</head>
+<body>
+    <#include "/src/html/hat.html">
+    <div class="container">
+        <div class="row">
+            <div class="col-1 text-left"></div>
+            <div class="col text-left">
+                <h2 class="mb-3">Оформление заказа</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col text-right mb-1">
+                <a href="/basket"> Вернуться в корзину</a>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col-1 text-left"></div>
+                <div class="col-7 text-left">
+                    <form onsubmit="return confirmOrder(event);">
+                        <div class="col center-col">
+                            <div class="row mb-3">
+                                <h4>1. Где и как вы хотите получить заказ?</h4>
+                            </div>
+                            <div class="row mb-3">
+                                <div>Адрес магазина<span class="star">*</span></div>
+                                <input class="form-control" type="text" id="address_shop_input" placeholder="Адрес магазина" minlength="5" maxlength="200" pattern="[\S]+.*" required>
+                            </div>
+                            <div class="row mb-3">
+                                <h4>2. Как вам будет удобнее оплатить заказ?</h4>
+                            </div>
+                            <div class="row mb-3 form-check-inline">
+                                <form id="payment_method_form">
+                                    <#list PageData.getPaymentMethods() as payMethod>
+                                    <script>
+                                        addPaymentMethodId('${payMethod.getId()}');
+                                    </script>
+                                    <div class="card payment-method m-2" id="card_pay_method_${payMethod.getId()}" onclick="changePaymentMethod('${payMethod.getId()}')">
+                                        <div class="row">
+                                            <div class="col-9">
+                                                <div class="card-body el-radio">
+                                                    <span class="text-center">${payMethod.getName()}</span>
+                                                    <p class="payment-method-desc card-text">${payMethod.getDescription()}</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-3 el-radio my-4 text-center col-radio-button">
+                                                <input type="radio" id="radio_pay_method_${payMethod.getId()}" name="radio_pay_method" value="${payMethod.getId()}" >
+                                                <label class="payment-method-label el-radio-style" for="radio_pay_method_${payMethod.getId()}"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </#list>
+                                </form>
+                            </div>
+                            <div class="row mb-3">
+                                <h4>3. Укажите данные получателя заказа</h4>
+                            </div>
+                            <div class="row mb-3">
+                                <div>Имя<span class="star">*</span></div>
+                                <input class="form-control" type="text" id="recipient_name_input" placeholder="Имя" minlength="1" maxlength="152" pattern="[a-zA-Z0-9а-яА-ЯёЁ]+[\sa-zA-Z0-9а-яА-ЯёЁ]*" value="<#if PageData.getClient()??>${PageData.getClient().getFIO()}</#if>" required>
+                                <div>Email<span class="star">*</span></div>
+                                <input class="form-control" type="email" id="recipient_email_input" pattern="[a-zA-Z0-9]+[a-zA-Z0-9_.-]*[a-zA-Z0-9]+@[a-zA-Z0-9]+[.]{1}[a-zA-Z]+"
+                                       placeholder="Email" minlength="5"  maxlength="350" title="До знака @ используйте только латинские буквы, цифры, нижнее подчёркивание, дефис и точку." value="<#if PageData.getClient()??>${PageData.getClient().getEmail()}</#if>" required>
+                                <div>Телефон<span class="star">*</span></div>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">7</span>
+                                    </div>
+                                    <input class="form-control" type="text" id="recipient_phone_input" placeholder="Номер телефона" pattern="[(]{1}[0-9]{3}[)]{1}[\s]{1}[0-9]{3}[-]{1}[0-9]{4}" minlength="10" maxlength="10" value="<#if PageData.getClient()??>${PageData.getClient().getPhoneWithout7()}</#if>"  required>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col text-left">
+                                    <h6 class="price-text">Товары</h6>
+                                </div>
+                                <div class="col text-right">
+                                    <h5>${PageData.getSummaryPrice()} &#8381;</h5>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col text-left">
+                                    <h6 class="price-text">Доставка</h6>
+                                </div>
+                                <div class="col text-right">
+                                    <h5>0 &#8381;</h5>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row mb-3">
+                                <div class="col text-left">
+                                    <h5 class="price-text"><b>Итого к оплате</b></h5>
+                                </div>
+                                <div class="col text-right">
+                                    <h4><b>${PageData.getSummaryPrice()} &#8381;</b></h4>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col text-right mb-3">
+                                    <button class="btn text-white purchase-button pr-4 pl-4" type="submit" id="signup_button">Сделать заказ</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+                <div class="col-4">
+                    <div class="row price-block ml-3 sticky">
+                        <div class="col">
+                            <div class="row pb-3"></div>
+                            <div class="row product-pay pb-1">
+                                <h4 class="col text-left my-auto product-list text-muted">В корзине товаров: '${PageData.getAmountOfAllProductInBasket()}' на сумму ${PageData.getSummaryPrice()} &#8381;</h4>
+                            </div>
+                            <#list PageData.getProducts() as product>
+                            <div class="row py-1">
+                                <p class="col text-left my-auto product-list">${product.getName()}</p>
+                            </div>
+                            <div class="row pb-1 product-pay">
+                                <p class="col text-left my-auto product-list text-muted">${PageData.getAmountProductBasketIDProduct(product.getId())} шт. x ${product.getFactualPrice()}</p>
+                            </div>
+                            </#list>
+                            <div class="row py-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>

@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping xmlns="http://www.hibernate.org/xsd/hibernate-mapping">
+    <class name="Entity.Client" table="client">
+        <id name="id" column="id">
+            <generator class="identity" />
+        </id>
+        <property not-null="true" name="surname" column="surname" />
+        <property not-null="true" name="name" column="name" />
+        <property name="patronymic" column="patronymic" />
+        <property name="sex" column="sex" />
+        <property name="password" column="password" />
+        <property name="email" column="email" />
+        <property not-null="true" type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate" name="date_of_birth" column="date_of_birth" />
+        <property name="phone" column="phone" />
+        <property name="spare_phone" column="spare_phone" />
+        <property type="org.jadira.usertype.dateandtime.joda.PersistentDateTime" name="datetime_of_registration" column="datetime_of_registration" />
+        <property name="confirmed" column="confirmed" />
+    </class>
+
+    <class name="Entity.Category" table="category">
+        <id name="id" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="name" column="name" />
+    </class>
+
+    <class name="Entity.OrderShop" table="order_shop">
+        <id name="id" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="id_client" column="id_client" />
+        <property name="id_payment_method" column="id_payment_method" />
+        <property name="delivery_price" column="delivery_price" />
+        <property type="org.jadira.usertype.dateandtime.joda.PersistentLocalDate" name="date_of_ready" column="date_of_ready" />
+        <property name="recipient_name" column="recipient_name" />
+        <property name="recipient_email" column="recipient_email" />
+        <property name="recipient_phone" column="recipient_phone" />
+        <property type="org.jadira.usertype.dateandtime.joda.PersistentDateTime" name="datetime_of_creation" column="datetime_of_creation" />
+        <property name="address_shop" column="address_shop" />
+        <property name="status" column="status" />
+        <property name="is_paid" column="is_paid" />
+    </class>
+
+    <class name="Entity.Product" table="product">
+        <id name="id" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="id_category" column="id_category" />
+        <property name="name" column="name" />
+        <property name="price" column="price" />
+        <property name="description" column="description" />
+        <property name="amount" column="amount" />
+        <property name="price_with_discount" column="price_with_discount" />
+        <property name="specification" column="specification" />
+        <property type="org.jadira.usertype.dateandtime.joda.PersistentDateTime" name="datetime_of_adding" column="datetime_of_adding" />
+    </class>
+
+    <class name="Entity.Favorite" table="favorite">
+        <id name="id_client" column="id_client"> </id>
+        <id name="id_product" column="id_product" />
+    </class>
+
+    <class name="Entity.Basket" table="basket">
+        <id name="id_client" column="id_client"> </id>
+        <id name="id_product" column="id_product" />
+        <property name="amount_of_product" column="amount_of_product" />
+    </class>
+
+    <class name="Entity.PaymentMethod" table="payment_method">
+        <id name="id" column="id">
+            <generator class="identity" />
+        </id>
+        <property name="name" column="name" />
+        <property name="description" column="description" />
+    </class>
+
+    <class name="Entity.ProductsInOrder" table="products_in_order">
+        <id name="id_order" column="id_order"/>
+        <id name="id_product" column="id_product" />
+        <property name="amount_of_product" column="amount_of_product" />
+        <property name="price" column="price" />
+        <property name="price_with_discount" column="price_with_discount" />
+    </class>
+
+    <class name="Entity.ConfirmationKey" table="confirmation_key">
+        <id name="id_client" column="id_client">
+            <generator class="identity" />
+        </id>
+        <property name="confirmation_key" column="confirmation_key" />
+        <property name="is_email_sent" column="is_email_sent" />
+        <property name="amount_of_checks" column="amount_of_checks" />
+    </class>
+
+    <class name="Entity.BlockSendingMail" table="block_sending_mail">
+        <id name="id" column="id">
+            <generator class="identity" />
+        </id>
+        <property type="org.jadira.usertype.dateandtime.joda.PersistentDateTime" name="datetime_block_until_date" column="datetime_block_until_date"/>
+    </class>
+
+</hibernate-mapping>

@@ -1,0 +1,20 @@
+.my-account{
+    background: #edeae6;
+}
+
+.data{
+    background: white;
+}
+
+.btn-white-text{
+    color: white;
+}
+
+.image-border{
+    color: white;
+    font-size: 1.5rem;
+    background: grey;
+    border-radius: 1rem;
+    border: .7rem solid grey;
+    text-align: center;
+}

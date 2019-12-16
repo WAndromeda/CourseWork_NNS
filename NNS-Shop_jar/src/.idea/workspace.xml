@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="eb9b48b0-f909-489f-b041-2d006a81bdda" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="FreeMarker template" />
+        <option value="FreeMarker" />
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="1Tnp6ZTp3QhdCmDedpxqaoQIlix" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
+    <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\n-n-s\IdeaProjects\CourseWork_NNS\NNS-Shop_jar\src\html" />
+    </key>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb9b48b0-f909-489f-b041-2d006a81bdda" name="Default Changelist" comment="" />
+      <created>1572793197551</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1572793197551</updated>
+      <workItem from="1572793199851" duration="14042000" />
+      <workItem from="1572834545836" duration="246000" />
+      <workItem from="1572864667698" duration="28857000" />
+      <workItem from="1572956225844" duration="9133000" />
+      <workItem from="1572979340141" duration="3353000" />
+      <workItem from="1573067536139" duration="3041000" />
+      <workItem from="1573130113128" duration="27641000" />
+      <workItem from="1573214756836" duration="15464000" />
+      <workItem from="1573303213867" duration="5931000" />
+      <workItem from="1573310483254" duration="18089000" />
+      <workItem from="1573391010514" duration="22553000" />
+      <workItem from="1573472750721" duration="28164000" />
+      <workItem from="1573569779507" duration="18370000" />
+      <workItem from="1573607610976" duration="5094000" />
+      <workItem from="1573648771882" duration="18233000" />
+      <workItem from="1573738288639" duration="27713000" />
+      <workItem from="1573820404344" duration="36806000" />
+      <workItem from="1573914461378" duration="30683000" />
+      <workItem from="1574003480538" duration="4382000" />
+      <workItem from="1574098859449" duration="803000" />
+      <workItem from="1574105569029" duration="852000" />
+      <workItem from="1574295379084" duration="197000" />
+      <workItem from="1574468072170" duration="114000" />
+      <workItem from="1574552928644" duration="427000" />
+      <workItem from="1574555338525" duration="1065000" />
+      <workItem from="1574898501947" duration="125000" />
+      <workItem from="1574898797769" duration="14000" />
+      <workItem from="1574898827543" duration="7449000" />
+      <workItem from="1574944814557" duration="283000" />
+      <workItem from="1574945181765" duration="9311000" />
+      <workItem from="1575318493655" duration="64000" />
+      <workItem from="1575329174508" duration="13000" />
+      <workItem from="1575329926690" duration="1502000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog" timestamp="1574898804558">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="640" y="247" key="#com.intellij.openapi.updateSettings.impl.PluginUpdateInfoDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1574898804558" />
+  </component>
+</project>

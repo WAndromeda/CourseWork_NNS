@@ -1,0 +1,64 @@
+.body{
+    background: #fffffb;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-product{
+    width: 15rem;
+}
+
+.title-section{
+    margin: 1rem;
+}
+
+.nns-card-footer{
+    display: flex;
+}
+
+.old-price{
+    text-decoration: line-through;
+    font-size: 11pt;
+}
+
+.main-price{
+    font-size: 16pt;
+}
+
+.sum-price{
+    font-size: 18pt;
+}
+
+.mult-product{
+    font-size: 11pt;
+}
+
+.card-product{
+    width: 100%;
+}
+
+.col-card-image{
+    max-width: 10rem;
+    min-width: 9rem;
+}
+
+.price-block{
+    background: #edeae6;
+    min-width: 10rem;
+}
+
+.name-product{
+    font-size: 11pt;
+}
+
+.purchase-button{
+    background: mediumvioletred;
+    font-size: 11pt;
+}
+
+.purchase-button:hover{
+    background: #b81575;
+}

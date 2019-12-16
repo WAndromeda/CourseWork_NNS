@@ -1,0 +1,48 @@
+.body{
+    background: #fffffb;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-product{
+    width: 15rem;
+}
+
+.title-section{
+    margin: 1rem;
+}
+
+.nns-card-footer{
+    display: flex;
+}
+
+.old-price{
+    text-decoration: line-through;
+    font-size: 12pt;
+}
+
+.card-favorite{
+    width: 100%;
+}
+
+.col-card-image{
+    max-width: 15rem;
+}
+
+.in-basket{
+    border-radius: 50%;
+    border: .19rem solid black;
+    background: white;
+}
+
+.in-basket:hover{
+    background: #d845ff;
+    border: .19rem solid darkmagenta;
+}
+
+.check-draw-black{
+    color: black;
+}

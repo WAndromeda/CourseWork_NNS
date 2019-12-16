@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Товары в категории "${PageData.getCategory().getName()}"</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. Товары в категории '${PageData.getCategory().getName()}'">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/category.css">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/category.js" ></script>
+    <script src="/src/js/blazy.js" ></script>
+    <script src="/src/js/blazy.min.js" ></script>
+</head>
+<body class="body">
+    <#include "/src/html/hat.html">
+    <div class="container">
+        <div class="row">
+            <div class="col ml-5">
+                <div class="row">
+                    <h2>Товары в категории "${PageData.getCategory().getName()}"</h2>
+                </div>
+                <#if PageData.getProducts()??>
+                <div class="row">
+                    <#list PageData.getProducts() as product >
+                    <#if product.getAmount() gt 0>
+                    <div class="card card-product mb-4 mr-4">
+                        <a href="/product?id=${product.getId()}"><img src="/src/images/products/${product.getName()}.jpg" class="card-img-top py-3 pr-4 pl-4 b-lazy" height="200rem" alt="${product.getName()}"></a>
+                        <div class="card-body">
+                            <p class="card-text">${product.getName()}</p>
+                        </div>
+                        <div class="card-footer bg-transparent text-center" >
+                            <#if  product.isDiscount()>
+                                <h3 class="pull-left text-muted old-price">${product.getPrice()} &#8381;</h3>
+                                <h5 class="pull-left"><b>${product.getPrice_with_discount()} &#8381;</b></h5>
+                            <#else>
+                                <h5 class="pull-left"><b>${product.getPrice()} &#8381;</b></h5>
+                            </#if>
+                            <#function isInBasket productObj>
+                                <#if PageData.getBaskets()?? >
+                                    <#list PageData.getBaskets() as basket>
+                                        <#if  basket.getId_product() == productObj.getId()>
+                                            <#return true>
+                                        </#if>
+                                        </#list>
+                                    <#return false>
+                                </#if>
+                                <#return false>
+                            </#function>
+                            <#if isInBasket(product) >
+                                <button class="btn btn-primary pull-right in-basket" type="button" onclick="addToBasket('${product.getId()}')"><i class="fas fa-check check-draw-black"></i></button>
+                            <#else>
+                                <button class="btn btn-primary pull-right" type="button" onclick="addToBasket('${product.getId()}')"><i class="fas fa-shopping-basket"></i></button>
+                            </#if>
+                        </div>
+                    </div>
+                    <#else>
+                    <div class="card card-product mb-4 mr-4">
+                        <a href="/product?id=${product.getId()}"><img src="/src/images/products/${product.getName()}.jpg" class="card-img-top py-3 pr-4 pl-4 b-lazy" height="200rem" alt="${product.getName()}"></a>
+                        <div class="card-body">
+                            <p class="card-text">${product.getName()}</p>
+                        </div>
+                        <div class="card-footer bg-transparent text-center" >
+                            <h5 class="pull-left"><b>Товар распродан</b></h5>
+                            <button class="btn btn-primary pull-right" type="button" aria-disabled="true" disabled><i class="far fa-window-close"></i></button>
+                        </div>
+                    </div>
+                    </#if>
+                    </#list>
+                </div>
+                <#else>
+                <div class="row">
+                    <h4>Товаров в данной категории пока нет</h4>
+                </div>
+                <div class="row">
+                    <a href="/" class="btn btn-primary pull-right" role="button" aria-disabled="true">Вернуться на главную</a>
+                </div>
+                </#if>
+            <br>
+            </div>
+        </div>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>

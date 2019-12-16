@@ -1,0 +1,23 @@
+.btn-signup{
+    background: blueviolet;
+    color: white;
+}
+
+.btn-signup:hover{
+     background: #6b00e2;
+     color: white;
+ }
+
+.btn-enter{
+    background: #5251e2;
+    color: white;
+}
+
+.btn-enter:hover{
+    background: #110de2;
+    color: white;
+}
+
+.star{
+    color: red;
+}

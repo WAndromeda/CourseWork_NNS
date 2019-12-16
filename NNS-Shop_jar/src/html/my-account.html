@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Личный кабинет</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. Личный кабинет пользователя">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <link rel="stylesheet" href="/src/css/my-account.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/my-account.js" ></script>
+    <script src="/src/js/jquery.mask.js"></script>
+    <script src="/src/js/jquery.mask.min.js"></script>
+    <script src="/src/js/bootbox/bootbox.all.js"></script>
+    <script src="/src/js/bootbox/bootbox.js"></script>
+    <script src="/src/js/bootbox/bootbox.locales.js"></script>
+</head>
+<body class="my-account">
+    <#include "/src/html/hat.html">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-11">
+                <h2>Личный кабинет</h2>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-sm-11 data p-4">
+                <p class="data">Здравствуйте, <b>${PageData.getClient().getSurname()} ${PageData.getClient().getName()}<#if PageData.getClient().getPatronymic()??> ${PageData.getClient().getPatronymic()}</#if></b>, добро пожаловать в ваш личный кабинет!</p>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <div class="row"><br></div>
+        <div class="row">
+            <div class="col-5 data">
+                <div class="row"><br></div>
+                <div class="row ">
+                    <i class="ml-2 image-border text-center fas fa-user my-auto"></i>
+                    <h5 class="col text-left my-auto">Личные данные</h5>
+                    <!-- <div class="col-sm-2"></div> -->
+                    <div class="col text-right">
+                        <button id="change_personal_data_button" class="btn btn-dark text-white float-right my-auto" disabled>Изменить</button>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-12 my-auto">
+                        <p>${PageData.getClient().getSurname()} ${PageData.getClient().getName()} <#if PageData.getClient().getPatronymic()??>${PageData.getClient().getPatronymic()}</#if></p>
+                    </div>
+                </div>
+                <div class="row m-1"></div>
+                <div class="row">
+                    <div class="col-12 my-auto">
+                        <p>${PageData.getClient().getEmail()}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 my-auto">
+                        <span>Тел: </span><span id="phone_span">${PageData.getClient().getPhone()}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-1"></div>
+            <div class="col-5 data">
+                <div class="row"><br></div>
+                <div class="row ">
+                    <i class="ml-2 image-border text-center fas fa-shopping-basket my-auto"></i>
+                    <h5 class="col text-left my-auto">Заказы</h5>
+                    <!-- <div class="col-sm-2"></div> -->
+                    <div class="col text-right">
+                        <a href="/order-history" class="btn btn-dark ml-4 text-white float-right my-auto" role="button">История заказов</a>
+                    </div>
+                </div>
+                <hr/>
+                <#list PageData.getOrderShops() as order>
+                    <div class="row">
+                        <div class="col ml-1 text-left">
+                            <a href="/order-details?id_order=${order.getId()}">Заказ №${order.getId()}</a>
+                        </div>
+                        <div class="col text-right">
+                            <h5><b>${PageData.getSumOrderWithDelivery(order)} &#8381;</b></h5>
+                        </div>
+                    </div>
+                    <hr/>
+                    <#else>
+                        <div class="row">
+                            <div class="col-sm-12 text-center my-auto">
+                                <h4><b>У вас ещё не было ни одного заказа</b></h4>
+                            </div>
+                        </div>
+                </#list>
+            </div>
+            <div class="col-sm-1"></div>
+        </div>
+        <br>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>

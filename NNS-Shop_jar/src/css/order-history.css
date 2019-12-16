@@ -1,0 +1,19 @@
+.order-history{
+     background: #f0ede8;
+ }
+
+.order{
+    background: white;
+}
+
+.order-name{
+    font-size: 14pt;
+}
+
+.order-date{
+    font-size: 12pt;
+}
+
+.card-order{
+    width: 100%;
+}

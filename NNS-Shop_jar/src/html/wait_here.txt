@@ -1,0 +1,10 @@
+<!--<#list Animals as a>
+                <tr>
+                    <td>${a.getId()}</td>
+                    <td>${a.getName()}</td>
+                    <td>${a.getLongitude()}</td>
+                    <td>${a.getWeight()}</td>
+                </tr>
+                </#list>*/-->
+
+                <!-- -->

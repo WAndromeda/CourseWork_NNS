@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Заказ №${PageData.getSpecificOrderShop().getId()}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. Информация о заказе.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <link rel="stylesheet" href="/src/css/order-details.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/order-details.js" ></script>
+    <script src="/src/js/bootbox/bootbox.all.js"></script>
+    <script src="/src/js/bootbox/bootbox.js"></script>
+    <script src="/src/js/bootbox/bootbox.locales.js"></script>
+</head>
+<body class="order-details">
+    <#include "/src/html/hat.html">
+    <div class="container">
+        <div class="row">
+            <div class="col ml-1 mb-2 text-left">
+                <a href="/order-history">Назад к истории заказов</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col ml-1 text-left">
+                <h2>Заказ №${PageData.getSpecificOrderShop().getId()}</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col ml-1 mb-1 text-left">
+                <p>Сделан ${PageData.dateFuncs.getDateInRUS(PageData.getSpecificOrderShop().getDatetime_of_creation())}</p>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row mb-5">
+                <div class="col-8">
+                    <div class="row">
+                        <#list PageData.getProductInOrderByIDOrder(PageData.getSpecificOrderShop().getId()) as product >
+                        <div class="card card-product">
+                            <div class="row no-gutters">
+                                <div class="col-4 text-center col-card-image" >
+                                    <a href="/product?id=${product.getId_product()}"><img src="/src/images/products/${product.getName()}.jpg" class="card-img-top my-3 pr-3 pl-3 b-lazy" height="120rem" alt="${product.getName()}"></a>
+                                </div>
+                                <div class="col-6 col-card-name">
+                                    <div class="card-body text-left product-name">
+                                        <p class="card-text">${product.getName()}</p>
+                                    </div>
+                                </div>
+                                <div class="col text-right col-card-amount">
+                                    <div class="card-body bg-transparent text-right">
+                                        <p>${product.getAmount_of_product()} шт.</p>
+                                    </div>
+                                </div>
+                                <div class="col text-right col-card-price">
+                                    <div class="card-body bg-transparent text-right">
+                                        <h4 class="pull-left card-title main-price"><b>${product.getFactualPrice()}</b></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </#list>
+                    </div>
+                    <div class="row m-3"></div>
+                    <div class="row">
+                        <div class="card card-product">
+                            <div class="row no-gutters">
+                                <div class="col-2 text-center col-icon my-4" >
+                                    <i class="image-border fas fa-user my-auto"></i>
+                                </div>
+                                <div class="col-7">
+                                    <div class="card-body text-left name-product">
+                                        <p class="card-text block-name">Контактная информация</p>
+                                        <p class="card-text "><b>Покупатель:</b> ${PageData.getSpecificOrderShop().getRecipient_name()}</p>
+                                        <p class="card-text "><b>Email:</b> ${PageData.getSpecificOrderShop().getRecipient_email()}</p>
+                                        <span class="card-text"><b>Тел:</b> ${PageData.getSpecificOrderShop().getRecipient_phone()}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="card card-product">
+                            <div class="row no-gutters">
+                                <div class="col-2  text-center col-icon" >
+                                    <i class="image-border far fa-calendar-check"></i>
+                                </div>
+                                <div class="col-7">
+                                    <div class="card-body text-left name-product">
+                                        <p class="card-text block-name">Дата готовности заказа</p>
+                                        <p class="card-text ">Доступно в магазине ${PageData.dateFuncs.getDateInRUS(PageData.getSpecificOrderShop().getDate_of_ready())}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="card card-product">
+                            <div class="row no-gutters">
+                                <div class="col-2 text-center col-icon" >
+                                    <i class="image-border fas fa-truck"></i>
+                                </div>
+                                <div class="col-7">
+                                    <div class="card-body text-left name-product">
+                                        <p class="card-text block-name">Информация о доставке</p>
+                                        <p class="card-text "><b>Цена:</b> <#if PageData.getSpecificOrderShop().getDelivery_price() == 0 > Бесплатно <#else> ${PageData.getSpecificOrderShop().getDelivery_price()} </#if></p>
+                                        <div class="row">
+                                            <i class="col col-icon-small my-1 fas fa-map-marker-alt"></i>
+                                            <p class="col ">${PageData.getSpecificOrderShop().getAddress_shop()}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row ">
+                        <div class="card card-product">
+                            <div class="row no-gutters">
+                                <div class="col-2 text-center col-icon" >
+                                    <i class="image-border far fa-money-bill-alt"></i>
+                                </div>
+                                <div class="col-7">
+                                    <div class="card-body text-left name-product">
+                                        <p class="card-text block-name">Способ оплаты</p>
+                                        <p class="card-text "> ${PageData.getSpecificPaymentMethod().getName()}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            <div class="col-4">
+                <div class="row order price-block ml-3">
+                    <div class="col">
+                        <div class="row product-pay pb-3"></div>
+                        <div class="row product-pay ">
+                            <h6 class="col text-left my-auto"><b>Товары (${PageData.countAmountOfProductsInOrder(PageData.getSpecificOrderShop().getId())})</b></h6>
+                            <h5 class="col text-right my-auto"><b>${PageData.getSumNoDiscountOfOrder(PageData.getSpecificOrderShop().getId())}</b></h5>
+                        </div>
+                        <hr>
+                        <div class="row product-pay ">
+                            <h6 class="col text-left my-auto">Доставка</h6>
+                            <h5 class="col text-right my-auto"><b><#if PageData.getSpecificOrderShop().getDelivery_price() == 0 > Бесплатно <#else> ${PageData.getSpecificOrderShop().getDelivery_price()} </#if></b></h5>
+                        </div>
+                        <#if PageData.getFactualSumOfOrder(PageData.getSpecificOrderShop().getId()) lt PageData.getSumNoDiscountOfOrder(PageData.getSpecificOrderShop().getId())>
+                            <hr>
+                            <div class="row product-pay ">
+                                <h6 class="col text-left my-auto">Сэкономлено</h6>
+                                <p class="col text-right my-auto"><b class="money-saved">${PageData.getSumNoDiscountOfOrder(PageData.getSpecificOrderShop().getId()) - PageData.getFactualSumOfOrder(PageData.getSpecificOrderShop().getId())}</b></>
+                            </div>
+                        </#if>
+                        <hr>
+                        <div class="row product-pay ">
+                            <h6 class="col text-left my-auto">Сумма заказа (р.)</h6>
+                            <h2 class="col text-right my-auto"><b>${PageData.getSumOrderWithDelivery(PageData.getSpecificOrderShop())}</b></h2>
+                        </div>
+                        <div class="row product-pay pb-3"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+        <div class="row mb-2"> </div>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>

@@ -1,0 +1,100 @@
+.body{
+    background: #fffffb;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.card-product{
+    width: 15rem;
+}
+
+.title-section{
+    margin: 1rem;
+}
+
+.nns-card-footer{
+    display: flex;
+}
+
+.price-text{
+    color: #292929;
+}
+
+.payment-method{
+    border: .1rem solid #d0d0d0;
+    border-radius: .5rem;
+    min-width: 5rem;
+    width: 18rem;
+    cursor: pointer;
+}
+
+.payment-method-checked{
+    border: .1rem solid #2fd052;
+    border-radius: .5rem;
+    min-width: 5rem;
+    width: 18rem;
+    cursor: pointer;
+}
+
+.payment-method:hover{
+    background: #f7f7f7;
+}
+
+.star{
+    color: red;
+}
+
+.col-radio-button{
+    width: .1rem;
+}
+
+.payment-method-label{
+    font-size: 12pt;
+}
+
+.payment-method-desc{
+    font-size: 10pt;
+    color: #858585;
+}
+
+.main-price{
+    font-size: 16pt;
+}
+
+.product-list{
+    font-size: 11pt;
+}
+
+.card-product{
+    width: 100%;
+}
+
+.col-card-image{
+    max-width: 10rem;
+    min-width: 9rem;
+}
+
+.price-block{
+    background: #fbf8f4;
+    min-width: 10rem;
+}
+
+.name-product{
+    font-size: 11pt;
+}
+
+.purchase-button{
+    background: mediumvioletred;
+    font-size: 15pt;
+}
+
+.purchase-button:hover{
+    background: #b81575;
+}
+
+.center-col{
+    padding: 0;
+}

@@ -1,0 +1,58 @@
+.data{
+    background: white;
+}
+
+.product{
+    background: #edeae6;
+}
+
+.button_add{
+    background: darkviolet;
+}
+
+.button_add:hover{
+    background: darkmagenta;
+}
+
+.image-col{
+    min-width: 25rem;
+    min-height: 20rem;
+    height: 20rem;
+}
+
+.image{
+    min-width: 15rem;
+    max-width: 25rem;
+    max-height: 50rem;
+}
+
+.product-pay {
+     background: #f5f5f5;
+     <!-- border-radius: 4px; -->
+}
+
+.old-price{
+    text-decoration: line-through;
+    font-size: 12pt;
+}
+
+.favorite-checkbox{
+    cursor: pointer;
+}
+
+.in-basket{
+    border-radius: 5%;
+    border: .19rem solid black;
+    background: white;
+    font-color: black;
+}
+
+.in-basket:hover{
+    background: #d845ff;
+    border: .19rem solid darkmagenta;
+    color: white;
+}
+
+.specifics-header{
+    font-size: 14pt;
+}

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Корзина</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. Корзина покупателя магазина">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <link rel="stylesheet" href="/src/css/basket.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/basket.js" ></script>
+    <script src="/src/js/bootbox/bootbox.all.js"></script>
+    <script src="/src/js/bootbox/bootbox.js"></script>
+    <script src="/src/js/bootbox/bootbox.locales.js"></script>
+    <script src="/src/js/blazy.js" ></script>
+    <script src="/src/js/blazy.min.js" ></script>
+</head>
+<body>
+    <#include "/src/html/hat.html">
+    <div class="container p-0">
+        <div class="row">
+            <div class="col text-left"><h2><b>Корзина</b> </h2></div>
+        </div>
+        <div class="row"><div class="col mb-2 text-right pull-right"><a href="/"><b>Вернуться к покупкам</b> </a></div></div>
+        <#if (PageData.getProducts()??) && (PageData.getProducts()?size gt 0)>
+            <div class="col">
+                <div class="row mb-5">
+                    <div class="col-9">
+                            <div class="row">
+                                <#list PageData.getProducts() as product >
+                                <div class="card mb-3 card-product">
+                                    <div class="row no-gutters">
+                                        <div class="col-5 text-center col-card-image" >
+                                            <a href="/product?id=${product.getId()}"><img src="/src/images/products/${product.getName()}.jpg" class="card-img-top my-3 pr-3 pl-3 b-lazy" height="120rem" alt="${product.getName()}"></a>
+                                        </div>
+                                        <div class="col-7">
+                                            <div class="card-body text-left name-product">
+                                                <p class="card-text">${product.getName()}</p>
+                                            </div>
+                                        </div>
+                                        <div class="col text-right">
+                                            <div class="card-footer bg-transparent text-right">
+                                            <#if product.isDiscount()>
+                                                <h3 class="pull-left text-muted old-price">${product.getPrice() * PageData.getAmountProductBasketIDProduct(product.getId())}</h3>
+                                                <h4 class="pull-left card-title main-price"><b>${product.getPrice_with_discount() * PageData.getAmountProductBasketIDProduct(product.getId())} &#8381;</b></h4>
+                                                <#if  PageData.getAmountProductBasketIDProduct(product.getId()) gt 1>
+                                                    <h3 class="pull-left text-muted mult-product">${PageData.getAmountProductBasketIDProduct(product.getId())} x ${product.getPrice_with_discount()} &#8381;</h3>
+                                                </#if>
+                                            <#else>
+                                                <h4 class="pull-left card-title main-price"><b>${product.getPrice() * PageData.getAmountProductBasketIDProduct(product.getId())} &#8381;</b></h4>
+                                                <#if  PageData.getAmountProductBasketIDProduct(product.getId()) gt 1>
+                                                    <h3 class="pull-left text-muted mult-product">${PageData.getAmountProductBasketIDProduct(product.getId())} x ${product.getPrice()} &#8381;</h3>
+                                                </#if>
+                                            </#if>
+                                            </div>
+                                            <div class="row text-right">
+                                                <div class="col text-right">
+                                                    <select class="btn" id="amount_select_${product.getId()}" oninput="changeAmountInBasket('${product.getId()}')" required>
+                                                        <#list PageData.getListAmountProductRemainID(product.getId()) as num>
+                                                            <#if PageData.getAmountProductBasketIDProduct(product.getId()) == num>
+                                                                <option value="${num}" selected>${num} шт.</option>
+                                                            <#else>
+                                                                <option value="${num}">${num} шт.</option>
+                                                            </#if>
+                                                        </#list>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="row text-right">
+                                                <div class="col text-right">
+                                                    <button class="btn" type="button" onclick="deleteProductFromBasket('${product.getId()}')"><i class="fas fa-dumpster mr-2"></i>Удалить</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </#list>
+                            </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="row price-block ml-3">
+                            <div class="col">
+                                <#if PageData.sumPriceWithDiscountOfBasket() lt PageData.sumPriceOfBasket() >
+                                    <div class="row product-pay pb-3"></div>
+                                    <div class="row product-pay py-1">
+                                        <h2 class="col text-right my-auto old-price text-muted">${PageData.sumPriceOfBasket()}</h2>
+                                    </div>
+                                    <div class="row product-pay pb-3">
+                                        <h2 class="col text-right my-auto sum-price"><b>${PageData.sumPriceWithDiscountOfBasket()} &#8381;</b></h2>
+                                    </div>
+                                <#else>
+                                    <div class="row"></div>
+                                    <div class="row product-pay p-3">
+                                        <h2 class="col text-right my-auto sum-price"><b>${PageData.sumPriceOfBasket()} &#8381;</b></h2>
+                                    </div>
+                                </#if>
+                                <div class="row product-pay p-3">
+                                <button class="col text-center btn btn-primary purchase-button" id="purchase_button" type="button">Продолжить оформление</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        <#else>
+            <div class="row mb-3">
+                <div class="col">
+                    <h4>Ваша корзина пуста</h4>
+                </div>
+            </div>
+            <div class="row mb-5">
+                <div class="col">
+                    <a href="/" class="btn btn-primary pull-right" role="button">Вернуться на главную</a>
+                </div>
+            </div>
+        </#if>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>

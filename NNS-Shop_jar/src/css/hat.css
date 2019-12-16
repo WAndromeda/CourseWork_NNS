@@ -1,0 +1,59 @@
+.main-image{
+    cursor: pointer;
+    max-width: 8rem;
+    width: 8rem;
+    height: 5rem;
+    max-height: 8rem;
+}
+
+.col-main-image{
+    min-width: 8rem;
+}
+
+.favorite-basket{
+    background: linear-gradient(to right, #1d9426, #a232e2);
+    max-width: 5rem;
+}
+
+.col-favorite-basket{
+    min-width: 12rem;
+}
+
+.col-search{
+    min-width: 6rem;
+    max-width: 12rem;
+}
+
+.search{
+    min-width: 7rem;
+    max-width: 12rem;
+}
+
+.col-client-fio{
+    min-width: 20rem;
+}
+
+.client-fio{
+    max-width: 20rem;
+}
+
+.button_a {
+    color: inherit;
+    text-decoration: none;
+
+}
+.button_a:hover {
+    text-decoration: none; /* Убираем подчеркивание */
+    color: #000000; /* Цвет ссылки при наведении на нее курсора мыши */
+}
+
+.flex-div {
+    display: flex;
+}
+
+.hat-user{
+    width: 100%;
+    max-width: 100%;
+}
+
+

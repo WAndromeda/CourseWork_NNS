@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Регистрация</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. Зарегиструйтесь и получить доступ к списку избранного, возможности просматривать оформленные вам заказы и многое другое!">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <link rel="stylesheet" href="/src/css/signup.css">
+    <link rel="stylesheet" href="/src/css/datepicker.min.css">
+    <link rel="stylesheet" href="/src/css/datepicker.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/signup.js" ></script>
+    <script src="/src/js/jquery.mask.js"></script>
+    <script src="/src/js/jquery.mask.min.js"></script>
+    <script src="/src/js/datepicker.js"></script>
+    <script src="/src/js/datepicker.min.js"></script>
+    <script src="/src/js/bootbox/bootbox.all.js"></script>
+    <script src="/src/js/bootbox/bootbox.js"></script>
+    <script src="/src/js/bootbox/bootbox.locales.js"></script>
+</head>
+<body>
+    <#include "/src/html/hat.html">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-2"> </div>
+            <div class="col-sm-7">
+                <form onsubmit="return register(event);">
+                    <h3 class="mb-3">Регистрация</h3>
+                    <div class="mb-3">
+                        <div>Фамилия<span class="star">*</span></div>
+                        <input class="form-control" type="text" id="surname_input" pattern="[a-zA-Z0-9а-яА-ЯёЁ]+[\sa-zA-Z0-9а-яА-ЯёЁ]*" placeholder="Фамилия" minlength="1" maxlength="50" required>
+                    </div>
+                    <div class="mb-3">
+                        <div>Имя<span class="star">*</span></div>
+                        <input class="form-control" type="text" id="name_input" placeholder="Имя" minlength="1" maxlength="50" pattern="[a-zA-Z0-9а-яА-ЯёЁ]+[\sa-zA-Z0-9а-яА-ЯёЁ]*" required>
+                    </div>
+                    <div class="mb-3">
+                        <div>Отчество</div>
+                        <input class="form-control" type="text" id="patronymic_input" placeholder="Отчество" minlength="1" pattern="[a-zA-Z0-9а-яА-ЯёЁ]+[\sa-zA-Z0-9а-яА-ЯёЁ]*" maxlength="50">
+                    </div>
+                    <div class="mb-3">
+                        <div>Пол<span class="star">*</span></div>
+                        <div class="input-group">
+                            <select id="sex_select" class="browser-default custom-select" oninput="changeGender()" required>
+                                <option value="1">Мужской </option>
+                                <option value="2">Женский</option>
+                                <option value="3" selected>Не определён</option>
+                            </select>
+                            <div class="input-group-append">
+                                <span class="input-group-text"><i id="sex_icon" class="fas fa-venus-mars"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div>Email<span class="star">*</span></div>
+                        <input class="form-control" type="email" id="email_input" pattern="[a-zA-Z0-9]+[a-zA-Z0-9_.-]*[a-zA-Z0-9]+@[a-zA-Z0-9]+[.]{1}[a-zA-Z]+"
+                               placeholder="Email" minlength="5"  maxlength="350" title="До знака @ используйте только латинские буквы, цифры, нижнее подчёркивание, дефис и точку." oninput="emailValidOrInvalid()" required>
+                    </div>
+                    <div class="mb-3">
+                        <div>Мобильный телефон<span class="star">*</span></div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">7</span>
+                            </div>
+                            <input class="form-control" type="text" id="phone_input" placeholder="Номер телефона" pattern="[(]{1}[0-9]{3}[)]{1}[\s]{1}[0-9]{3}[-]{1}[0-9]{4}" minlength="10" maxlength="10"  required>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div>Дополнительный мобильный телефон</div>
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text">7</span>
+                            </div>
+                            <input class="form-control" type="text" id="spare_phone_input" placeholder="Запасной номер телефона" pattern="[(]{1}[0-9]{3}[)]{1}[\s]{1}[0-9]{3}[-]{1}[0-9]{4}" minlength="10" maxlength="10">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div>Дата рождения<span class="star">*</span></div>
+                        <div class="input-group">
+                            <input id="date_of_birth_input" class="form-control datepicker-here" data-position="right top"  data-date-format="dd.mm.yyyy" minlength="10" maxlength="10" required onkeydown="return false;">
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <div>Пароль<span class="star">*</span></div>
+                        <div class="input-group">
+                            <input class="form-control" id="password_input" minlength="8" maxlength="30" type="password" pattern="[\w]+" placeholder="Пароль"  required >
+                            <div class="input-group-append">
+                                <button id="eye_password" class="btn btn-outline-secondary" type="button"><i id="show_password_eye" class="far fa-eye-slash"></i></button>
+                            </div>
+                        </div>
+                        <div> <small id="password_help" class="form-text text-muted"> Пароль должен быть от 8 до 30 символов, содержать только латинские буквы, цифры и нижнее подчёркивание</small></div>
+                    </div>
+                    <div class="mb-3">
+                        <div>Подтвердите пароль<span class="star">*</span></div>
+                        <div class="input-group mb-3">
+                            <input class="form-control" id="password_confirmation_input" minlength="8" maxlength="30" type="password" pattern="[\w]+" placeholder="Подтвердите пароль"  required>
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" id="eye_password_confirm" type="button"><i id="show_password_eye_confirmation" class="far fa-eye-slash"></i></button>
+                            </div></div>
+                    </div>
+                    <div class="mb-3"><button class="btn btn-outline-secondary btn-signup" type="submit" id="signup_button">Подтвердить регистрацию</button></div>
+                </form>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>

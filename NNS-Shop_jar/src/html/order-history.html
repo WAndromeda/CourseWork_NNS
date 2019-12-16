@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>История заказов</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8">
+    <meta name="Description" content="NNS-SHOP. История заказов пользователя.">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="/src/css/links.css">
+    <link rel="stylesheet" href="/src/css/hat.css">
+    <link rel="stylesheet" href="/src/css/order-history.css">
+    <script src="https://kit.fontawesome.com/2e8b0ec66c.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="/src/js/hat.js" ></script>
+    <script src="/src/js/order-history.js" ></script>
+    <script src="/src/js/bootbox/bootbox.all.js"></script>
+    <script src="/src/js/bootbox/bootbox.js"></script>
+    <script src="/src/js/bootbox/bootbox.locales.js"></script>
+</head>
+<body class="order-history">
+    <#include "/src/html/hat.html">
+    <div class="container">
+        <div class="row">
+            <div class="col mb-2 text-left">
+                <a href="/my-account">Назад к личному кабинету</a>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col mb-3 text-left">
+                <h2>История заказов</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12">
+                <#list PageData.getOrderShops() as order>
+                    <div class="card order card-order">
+                        <div class="row m-2 mb-3">
+                            <div class="col-6 col-sm-6 col-md-5 col-lg-5 text-left">
+                                <a href="/order-details?id_order=${order.getId()}" class="order-name">Заказ №${order.getId()}</a>
+                            </div>
+                            <div class="col-md-3 col-lg-4 text-right d-none d-md-block">
+                                <p class="order-date">от: ${PageData.dateFuncs.getDateInRUS(order.getDatetime_of_creation())}</p>
+                            </div>
+                            <div class="col-6 col-sm-6 col-md-4 col-lg-3 text-right">
+                                <p><b>${PageData.getSumPriceOfOrder(order.getId())} &#8381;</b></p>
+                            </div>
+                        </div>
+                        <div class="row m-1"></div>
+                    </div>
+                <#else>
+                    <div class="text-center my-auto">
+                        <h4><b>У вас ещё не было ни одного заказа</b></h4>
+                    </div>
+                </#list>
+        </div>
+    </div>
+        <div class="row mb-5"></div>
+    </div>
+    <#include "/src/html/links.html">
+</body>
+</html>
